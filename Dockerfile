@@ -13,10 +13,9 @@ LABEL org.opencontainers.image.licenses = "GPL-3.0-or-later"
 RUN apk add --update --no-cache \
 		git
 
-# Get composer
-# TODO: Install default version (currently composer v2) once bug fixed in phar build stage. Create ticket for build error.
+# Get latest composer version
 RUN COMPOSER_HOME=$HOME_DIR/.composer \
-	&& /usr/bin/curl -sS https://getcomposer.org/installer | php -- --1 --install-dir=/usr/local/bin && mv /usr/local/bin/composer.phar /usr/local/bin/composer
+	&& /usr/bin/curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
 # Configure PHP to allow phar builds
 COPY conf.d/*.ini /usr/local/etc/php/conf.d/
