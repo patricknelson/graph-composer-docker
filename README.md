@@ -61,11 +61,17 @@ graphs for. See [quick start](#quick-start) for some more system specific altern
 
 # Development of this image
 
-Use `docker-compose up` to launch and then in a separate window, load up an interactive shell:
+This works by building `graph-composer.phar` from source ([clue/graph-composer](https://github.com/clue/graph-composer#installation-using-composer))
+using `composer` and bundling it into a small PHP-based image.
+
+To launch, just use `docker-compose up` and then load up an interactive shell:
 
 ```bash
-docker-compose up --build
+docker-compose up -d --build
 docker-compose exec app sh
+
+# Don't forget to clean up when finished...
+docker-compose down
 ```
 
 If you'd like to contribute, feel free to submit an issue or PR!
