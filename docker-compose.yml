@@ -1,0 +1,14 @@
+##
+## Setup purely for local development of the container image.
+##
+
+version: "3.7"
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/graph-composer
+
+    # Just to keep the container running. To access the shell, use:   docker-compose exec app sh
+    command: tail -f /dev/null
