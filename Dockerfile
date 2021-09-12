@@ -3,8 +3,7 @@
 ##
 FROM php:7-alpine AS builder
 
-# See https://github.com/opencontainers/image-spec/blob/main/annotations.md
-# See https://spdx.org/licenses/
+# See https://github.com/opencontainers/image-spec/blob/main/annotations.md and https://spdx.org/licenses/
 LABEL org.opencontainers.image.authors  = "Patrick Nelson (pat@catchyour.com)"
 LABEL org.opencontainers.image.source   = "https://github.com/patricknelson/graph-composer-docker"
 LABEL org.opencontainers.image.licenses = "GPL-3.0-or-later"
@@ -38,7 +37,6 @@ RUN git clone https://github.com/clue/graph-composer.git \
 ##
 ## Install graph-composer.phar and associated dependencies
 ##
-
 FROM php:7-alpine AS final
 
 COPY --from=builder /root/graph-composer.phar /usr/local/bin
@@ -51,4 +49,3 @@ RUN apk add --update --no-cache \
 # Important: Ensure container runs as unprivileged user (to protect mounted files).
 USER www-data
 WORKDIR /graph-composer
-
