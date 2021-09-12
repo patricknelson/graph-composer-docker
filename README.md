@@ -15,17 +15,21 @@ Launch an interactive shell and then just run `graph-composer.phar` as usual.
 # Generic (replace LOCAL_PATH)
 docker run -it --rm -v LOCAL_PATH:/graph-composer patricknelson/graph-composer-docker sh
 
+# ... then run graph-composer.phar as usual...
+graph-composer.phar export > graph.svg
+```
+
+Or, if you're lazy like me and don't want to type out your `LOCAL_PATH` every time and simply use the current directory:
+
+```bash
 # Relative to current directory (MacOS/Linux)
 docker run -it --rm -v "$(pwd):/graph-composer" patricknelson/graph-composer-docker sh
 
 # Relative to current directory (Windows with cygwin)
 docker run -it --rm -v "$(cygpath -am .):/graph-composer" patricknelson/graph-composer-docker sh
-
-# ... then run graph-composer.phar as usual...
-graph-composer.phar export > graph.svg
 ```
 
-Or, you can pack it into a single command (more complex):
+Pack it into a single command (more complex). Note that you will have issues exporting to binary formats like `png`.
 
 ```bash
 # Export to SVG in the current working directory (on host machine, which may vary from the LOCAL_PATH volume mount).
