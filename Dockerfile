@@ -14,7 +14,7 @@ RUN apk add --update --no-cache \
 		git
 
 # Get composer
-# TODO: Install default version (currently composer v2) once bug fixed in phar build stage. Create ticket for build error.
+# TODO: Install default version (currently composer v2) once bug fixed in phar build stage. See: https://github.com/clue/graph-composer/issues/58
 RUN COMPOSER_HOME=$HOME_DIR/.composer \
 	&& /usr/bin/curl -sS https://getcomposer.org/installer | php -- --1 --install-dir=/usr/local/bin && mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
